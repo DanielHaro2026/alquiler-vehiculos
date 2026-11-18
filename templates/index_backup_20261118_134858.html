@@ -1,0 +1,49 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Inicio | AutoRent{% endblock %}
+
+{% block content %}
+
+<div class="p-4 mb-4 bg-white rounded-3 shadow-sm">
+    <h1 class="fw-bold">Sistema de Alquiler de Vehiculos</h1>
+    <p class="text-muted mb-0">
+        Plataforma de administracion de vehiculos, clientes y alquileres.
+    </p>
+</div>
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5>🚗 Vehiculos registrados</h5>
+                <h2 class="fw-bold">{{ vehiculos }}</h2>
+                <a href="/vehiculos" class="btn btn-primary">Gestionar vehiculos</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5>👥 Clientes registrados</h5>
+                <h2 class="fw-bold">{{ clientes }}</h2>
+                <a href="/clientes" class="btn btn-primary">Gestionar clientes</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+            <div class="card-body">
+                <h5>📋 Alquileres realizados</h5>
+                <h2 class="fw-bold">{{ alquileres }}</h2>
+                <a href="/alquileres" class="btn btn-primary">Gestionar alquileres</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+

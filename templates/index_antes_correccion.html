@@ -1,0 +1,201 @@
+﻿{% extends "base.html" %}
+
+{% block title %}
+
+<style>
+    .hero-autorent {
+        min-height: 340px;
+        border-radius: 22px;
+        background:
+            linear-gradient(90deg, rgba(5,20,45,.88), rgba(5,20,45,.18)),
+            url("https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1800&q=85");
+        background-position: center;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        padding: 45px;
+        color: white;
+        box-shadow: 0 8px 25px rgba(0,0,0,.15);
+    }
+
+    .hero-autorent h1 {
+        font-size: clamp(2rem, 4vw, 3.5rem);
+        font-weight: 800;
+    }
+
+    .stat-card {
+        border: 0;
+        border-radius: 18px;
+        padding: 24px;
+        height: 100%;
+        box-shadow: 0 5px 18px rgba(0,0,0,.07);
+        transition: transform .2s ease;
+    }
+
+    .stat-card:hover, .vehicle-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #087bff;
+    }
+
+    .vehicle-card {
+        border: 0;
+        border-radius: 17px;
+        overflow: hidden;
+        box-shadow: 0 5px 18px rgba(0,0,0,.08);
+        transition: transform .2s ease;
+        height: 100%;
+    }
+
+    .vehicle-card img {
+        height: 190px;
+        width: 100%;
+        object-fit: cover;
+    }
+
+    .section-title {
+        font-weight: 800;
+        color: #172b4d;
+    }
+
+    .dashboard-button {
+        border-radius: 9px;
+        padding: 10px 18px;
+        font-weight: 600;
+    }
+</style>
+
+<div class="container-fluid py-4">
+
+    <!-- BANNER PRINCIPAL -->
+    <section class="hero-autorent mb-4">
+        <div>
+            <span class="badge bg-primary mb-3 p-2">AUTORENT</span>
+            <h1>Tu próximo viaje comienza aquí</h1>
+            <p class="fs-5 mb-4">
+                Sistema de administración de vehículos, clientes y alquileres.
+            </p>
+            <a href="/vehiculos" class="btn btn-primary btn-lg dashboard-button">
+                Explorar vehículos
+            </a>
+        </div>
+    </section>
+
+    <!-- ESTADISTICAS -->
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>🚗 Vehículos registrados</h5>
+                    <span class="fs-2">🚘</span>
+                </div>
+                <div class="stat-number">{{ vehiculos }}</div>
+                <a href="/vehiculos" class="btn btn-primary dashboard-button mt-2">
+                    Gestionar vehículos
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>👥 Clientes registrados</h5>
+                    <span class="fs-2">🧑‍🤝‍🧑</span>
+                </div>
+                <div class="stat-number">{{ clientes }}</div>
+                <a href="/clientes" class="btn btn-primary dashboard-button mt-2">
+                    Gestionar clientes
+                </a>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card stat-card">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5>📋 Alquileres realizados</h5>
+                    <span class="fs-2">🔑</span>
+                </div>
+                <div class="stat-number">{{ alquileres }}</div>
+                <a href="/alquileres" class="btn btn-primary dashboard-button mt-2">
+                    Gestionar alquileres
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- CATEGORIAS DE VEHICULOS -->
+    <div class="mb-4">
+        <h2 class="section-title">Nuestros vehículos</h2>
+        <p class="text-secondary">
+            Explora las diferentes categorías de vehículos disponibles.
+        </p>
+    </div>
+
+    <div class="row g-4 mb-5">
+
+        <div class="col-md-4">
+            <div class="card vehicle-card">
+                <img src="https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&w=900&q=80"
+                     alt="Vehículo SUV">
+                <div class="card-body">
+                    <h5 class="fw-bold">SUV y camionetas</h5>
+                    <p class="text-secondary">Espacio, comodidad y versatilidad para tus viajes.</p>
+                    <a href="/vehiculos" class="btn btn-outline-primary dashboard-button">
+                        Ver vehículos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card vehicle-card">
+                <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=900&q=80"
+                     alt="Vehículo deportivo y sedán">
+                <div class="card-body">
+                    <h5 class="fw-bold">Sedanes</h5>
+                    <p class="text-secondary">Confort y elegancia para desplazamientos urbanos.</p>
+                    <a href="/vehiculos" class="btn btn-outline-primary dashboard-button">
+                        Ver vehículos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card vehicle-card">
+                <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=900&q=80"
+                     alt="Camioneta pickup">
+                <div class="card-body">
+                    <h5 class="fw-bold">Pickups</h5>
+                    <p class="text-secondary">Potencia y capacidad para cada necesidad.</p>
+                    <a href="/vehiculos" class="btn btn-outline-primary dashboard-button">
+                        Ver vehículos
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ACCESO RAPIDO -->
+    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+        <h4 class="section-title">Administración de AutoRent</h4>
+        <p class="text-secondary">
+            Accede rápidamente a las principales funciones del sistema.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="/vehiculos" class="btn btn-primary dashboard-button">🚗 Vehículos</a>
+            <a href="/clientes" class="btn btn-success dashboard-button">👥 Clientes</a>
+            <a href="/alquileres" class="btn btn-dark dashboard-button">📋 Alquileres</a>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
