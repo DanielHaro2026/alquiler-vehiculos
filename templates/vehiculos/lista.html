@@ -1,0 +1,88 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Vehiculos | AutoRent{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold">Gestion de Vehiculos</h2>
+        <p class="text-muted">Administracion del inventario vehicular.</p>
+    </div>
+
+    <a href="{{ url_for('nuevo_vehiculo') }}" class="btn btn-primary">
+        + Registrar vehiculo
+    </a>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Marca</th>
+                        <th>Modelo</th>
+                        <th>Placa</th>
+                        <th>Precio por dia</th>
+                        <th>Disponibilidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for v in vehiculos %}
+                    <tr>
+                        <td>{{ v.id }}</td>
+                        <td>{{ v.marca }}</td>
+                        <td>{{ v.modelo }}</td>
+                        <td><strong>{{ v.placa }}</strong></td>
+                        <td>S/ {{ "%.2f"|format(v.precio_dia) }}</td>
+
+                        <td>
+                            {% if v.estado == "Disponible" %}
+                                <span class="badge bg-success">Disponible</span>
+                            {% else %}
+                                <span class="badge bg-warning text-dark">Alquilado</span>
+                            {% endif %}
+                        </td>
+
+                        <td>
+                            <a href="{{ url_for('editar_vehiculo', id=v.id) }}"
+                               class="btn btn-sm btn-warning">
+                                Editar
+                            </a>
+
+                            <form action="{{ url_for('eliminar_vehiculo', id=v.id) }}"
+                                  method="POST" class="d-inline"
+                                  onsubmit="return confirm('¿Desea eliminar este vehiculo?')">
+
+                                <button type="submit" class="btn btn-sm btn-danger">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% else %}
+                    <tr>
+                        <td colspan="7" class="text-center text-muted py-4">
+                            No hay vehiculos registrados.
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+
+        <a href="/" class="btn btn-outline-secondary mt-3">Volver al inicio</a>
+
+    </div>
+</div>
+
+{% endblock %}

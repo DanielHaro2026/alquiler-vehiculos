@@ -1,0 +1,17 @@
+﻿services:
+  - type: web
+    name: alquiler-vehiculos
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DATABASE_PATH
+        value: /var/data/alquiler.db
+    disk:
+      name: autorrent-data
+      mountPath: /var/data
+      sizeGB: 1
